@@ -1,7 +1,15 @@
 # Bitcoin-Stealer
-Generate random bitcoin wallets & private keys (seeds) and then check if they match any wallet that has a positive balance, and then take all the btc from it.
+Generate random bitcoin wallets & private keys (seeds) and then check if they have a positive balance using the Blockchain.info API.
 
 # CHANGELOG
+<details>
+   <summary>2023-05-24</summary>
+   
+   - Updated the script to use Blockchain.info API for balance checking instead of comparing against a local list of addresses.
+   - Removed dependency on riches.txt file.
+   - Added error handling for API requests.
+</details>
+
 <details>
    <summary>2023-01-11</summary>
    
@@ -29,29 +37,35 @@ Generate random bitcoin wallets & private keys (seeds) and then check if they ma
 </details>
 
 # REQUIREMENTS
-1. Install Node.js
-2. npm i
-3. Lots of time on your hands.. there's a lot and I mean A LOT of possible addresses and keys, you will be extremely lucky to find any that will match your list.
+1. Install Node.js (version 12 or higher recommended)
+2. Install required dependencies
+
+# SETUP
+1. Make sure you have Node.js installed. You can download it from https://nodejs.org/
+2. Open a terminal or command prompt
+3. Navigate to the project directory (use `cd` command)
+4. Run the following command to install the required dependencies:
+   ```
+   npm install
+   ```
 
 # HOW TO RUN
-Just start run.bat (or run.sh if you're on linux).
+1. Open a terminal or command prompt
+2. Navigate to the project directory
+3. For Windows users:
+   - Run the `run.bat` file in the Windows folder
+4. For Linux users:
+   - Navigate to the Linux folder
+   - Make the run script executable by running: `chmod +x run.sh`
+   - Run the script: `./run.sh`
+
+The program will run silently, checking generated addresses against the Blockchain.info API. It will only output when it finds an address with a positive balance, at which point it will save the details to a `Success.txt` file and exit.
 
 # SPEED / PERFORMANCE
-Results from a somewhat decent computer:
-- 1.56 million checks every 1 minute
-- 7.2 billion checks in 1 day
-- 54 billion checks in a week
-- 216 billion checks in a month
-- 2.8 trillion checks in a year
-
-But please keep in mind that this is still really not much compared to all possible combinations that should be checked.
-
-# VIDEO
-
-[![YT VID](http://img.youtube.com/vi/JaKDEWXOKn0/0.jpg)](http://www.youtube.com/watch?v=JaKDEWXOKn0 "Bitcoin - Find Private Keys (Seeds) For Lost and Rich Wallets | NEW 2021")
+Results may vary depending on your internet connection and the responsiveness of the Blockchain.info API. The script now makes an API call for each generated address, which may slow down the process compared to the previous version.
 
 # TEST IT
-Go to the test folder and hit run. It will show you what would happen if a wallet from your list was found.
+Go to the test folder and hit run. It will show you what would happen if a wallet with a positive balance was found.
 
 # WHY DO THIS?
 There are a lot of wallets with high balances that are lost forever, which means nobody can access them and the money is basically there just to be picked up by anyone. This program can possibly find these lost wallets and their matching private keys and take the btc out of them.
